@@ -1,8 +1,8 @@
 {
-  "name": "codeflix",
+  "name": "sirius",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "microservice to process videos",
+  "author": "Jonas Brito",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

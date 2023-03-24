@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: sirius-api
+    volumes:
+      - .:/home/node/app
