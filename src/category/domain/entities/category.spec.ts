@@ -1,4 +1,5 @@
 import { Category } from './category';
+import { UniqueEntityId } from '../../../common/domain';
 
 describe('🔖 category', () => {
   it('should be defined', () => {
@@ -61,5 +62,22 @@ describe('🔖 category', () => {
 
     category['isActive'] = false;
     expect(category.isActive).toEqual(false);
+  });
+
+  it('should create a valid uuid if not provided', () => {
+    const uuid = new UniqueEntityId();
+    const variations = [
+      { props: { name: 'category' } },
+      { props: { name: 'category' }, id: null },
+      { props: { name: 'category' }, id: undefined },
+      { props: { name: 'category' }, id: uuid },
+    ];
+
+    for (const variation of variations) {
+      const category = new Category(variation.props, variation.id);
+
+      expect(category.id).toBeDefined();
+      expect(category.id).toBeInstanceOf(UniqueEntityId);
+    }
   });
 });
