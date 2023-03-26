@@ -1,5 +1,5 @@
 import { Category } from './category';
-import { UniqueEntityId } from '../../../common/domain';
+import { UniqueEntityId } from '../../../common/domain/value-objects';
 
 describe('🔖 category', () => {
   it('should be defined', () => {
@@ -77,7 +77,6 @@ describe('🔖 category', () => {
       const category = new Category(variation.props, variation.id);
 
       expect(category.id).toBeDefined();
-      expect(category.id).toBeInstanceOf(UniqueEntityId);
     }
   });
 });
