@@ -57,6 +57,9 @@ describe('🔖 category', () => {
     expect(category.isActive).toEqual(true);
     expect(category.createdAt).toBeInstanceOf(Date);
 
+    category['name'] = 'new category';
+    expect(category.name).toEqual('new category');
+
     category['description'] = 'category description';
     expect(category.description).toEqual('category description');
 
@@ -78,5 +81,24 @@ describe('🔖 category', () => {
 
       expect(category.id).toBeDefined();
     }
+  });
+
+  it('should update category', () => {
+    const category = new Category({ name: 'category' });
+
+    category.update('new category', 'category description');
+
+    expect(category.name).toEqual('new category');
+    expect(category.description).toEqual('category description');
+  });
+
+  it('should activate or deactivate a category', () => {
+    const category = new Category({ name: 'category' });
+
+    category.deactivate();
+    expect(category.isActive).toEqual(false);
+
+    category.activate();
+    expect(category.isActive).toEqual(true);
   });
 });
