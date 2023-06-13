@@ -1,5 +1,6 @@
 import { Entity } from '../../../common/domain/entities/entity';
 import { UniqueEntityId } from '../../../common/domain/value-objects';
+import ValidatorRules from '../../../common/validators/validator-rules';
 
 export type CategoryProps = {
   name: string;
@@ -10,6 +11,8 @@ export type CategoryProps = {
 
 export class Category extends Entity<CategoryProps> {
   constructor(public readonly props: CategoryProps, id?: UniqueEntityId) {
+    Category.validate(props);
+
     super(props, id);
 
     this.props.description = this.props.description ?? null;
@@ -18,8 +21,16 @@ export class Category extends Entity<CategoryProps> {
   }
 
   update(name: string, description: string) {
+    Category.validate({ name, description });
+
     this.name = name;
     this.description = description;
+  }
+
+  static validate(props: Omit<CategoryProps, 'createdAt'>) {
+    ValidatorRules.values(props.name, 'name').required().string();
+    ValidatorRules.values(props.description, 'description').string();
+    ValidatorRules.values(props.isActive, 'isActive').boolean();
   }
 
   activate() {
