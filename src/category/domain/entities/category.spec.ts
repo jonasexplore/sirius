@@ -1,7 +1,11 @@
-import { Category } from './category';
 import { UniqueEntityId } from '../../../common/domain/value-objects';
+import { Category } from './category';
 
 describe('🔖 category', () => {
+  beforeEach(() => {
+    Category.validate = jest.fn();
+  });
+
   it('should be defined', () => {
     expect(new Category({ name: 'category' })).toBeDefined();
   });
@@ -9,6 +13,7 @@ describe('🔖 category', () => {
   it('should be created with default values', () => {
     const category = new Category({ name: 'category' });
 
+    expect(Category.validate).toHaveBeenCalled();
     expect(category.props.createdAt).toBeInstanceOf(Date);
     delete category.props.createdAt;
 
@@ -88,6 +93,7 @@ describe('🔖 category', () => {
 
     category.update('new category', 'category description');
 
+    expect(Category.validate).toHaveBeenCalledTimes(2);
     expect(category.name).toEqual('new category');
     expect(category.description).toEqual('category description');
   });
