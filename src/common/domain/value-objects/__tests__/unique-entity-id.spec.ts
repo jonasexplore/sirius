@@ -1,6 +1,6 @@
 import { validate } from 'uuid';
 
-import { InvalidUuidError } from '../../../errors';
+import { InvalidUuidError } from '../../errors';
 import { UniqueEntityId } from '../unique-entity-id';
 
 describe('🔖 unique entity id', () => {
