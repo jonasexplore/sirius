@@ -1,4 +1,5 @@
-import { UniqueEntityId } from '../../../common/domain/value-objects';
+import { UniqueEntityId } from '@/domain/common/value-objects';
+
 import { Category } from './category';
 
 describe('🔖 category', () => {

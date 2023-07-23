@@ -1,7 +1,7 @@
 import { validate } from 'uuid';
 
-import { UniqueEntityId } from '../value-objects';
 import { Entity } from './entity';
+import { UniqueEntityId } from '../value-objects';
 
 class StubEntity extends Entity<{ prop1: string; prop2: number }> {}
 

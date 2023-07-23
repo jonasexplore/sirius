@@ -1,4 +1,5 @@
 import { validateSync } from 'class-validator';
+
 import ValidatorFields, { FieldsErrors } from './validator-fields';
 
 export abstract class ClassValidatorFields<T> implements ValidatorFields<T> {
