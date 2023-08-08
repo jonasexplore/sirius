@@ -69,6 +69,9 @@
         "@swc/jest"
       ]
     },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    },
     "clearMocks": true,
     "collectCoverageFrom": [
       "**/*.(t|j)s"
