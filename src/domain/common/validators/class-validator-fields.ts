@@ -1,13 +1,15 @@
 import { validateSync } from 'class-validator';
 
-import ValidatorFields, { FieldsErrors } from './validator-fields';
+import { FieldsErrors, ValidatorFieldsInterface } from './validator-fields';
 
-export abstract class ClassValidatorFields<T> implements ValidatorFields<T> {
+export abstract class ClassValidatorFields<PropsValidated>
+  implements ValidatorFieldsInterface<PropsValidated>
+{
   errors: FieldsErrors = null;
-  validatedData: T = null;
+  validatedData: PropsValidated = null;
+
   validate(data: any): boolean {
     const errors = validateSync(data);
-
     if (errors.length) {
       this.errors = {};
       for (const error of errors) {
@@ -17,7 +19,6 @@ export abstract class ClassValidatorFields<T> implements ValidatorFields<T> {
     } else {
       this.validatedData = data;
     }
-
     return !errors.length;
   }
 }
