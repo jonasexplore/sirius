@@ -24,7 +24,7 @@ export class SearchParams {
   protected _sort_dir: SortDirection | null;
   protected _filter: string | null;
 
-  constructor(props: Partial<SearchProps>) {
+  constructor(props: Partial<SearchProps> = {}) {
     this.page = props.page;
     this.per_page = props.per_page;
     this.sort = props.sort;
@@ -40,7 +40,7 @@ export class SearchParams {
     let _page = +value;
 
     if (Number.isNaN(_page) || _page < 1 || parseInt(String(_page)) !== _page) {
-      _page = 1;
+      _page = this.page;
     }
 
     this._page = _page;
@@ -51,14 +51,14 @@ export class SearchParams {
   }
 
   private set per_page(value: number) {
-    let _per_page = +value;
+    let _per_page = value === (true as any) ? this._per_page : +value;
 
     if (
       Number.isNaN(_per_page) ||
       _per_page < 1 ||
       parseInt(String(_per_page)) !== _per_page
     ) {
-      _per_page = 1;
+      _per_page = this._per_page;
     }
 
     this._per_page = _per_page;
