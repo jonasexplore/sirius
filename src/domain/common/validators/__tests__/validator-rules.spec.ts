@@ -1,5 +1,5 @@
-import ValidatorRules from './validator-rules';
-import ValidationError from '../errors/validation-error';
+import { ValidationError } from '../../errors/validation-error';
+import ValidatorRules from '../validator-rules';
 
 describe('🔖 validator rules', () => {
   it('values method', () => {

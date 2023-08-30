@@ -1,4 +1,4 @@
-import { SearchParams, SearchResult } from './repository-contract';
+import { SearchParams, SearchResult } from '../repository-contract';
 
 describe('🔖 Repository Contract', () => {
   it('page prop', () => {
