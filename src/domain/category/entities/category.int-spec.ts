@@ -1,27 +1,34 @@
-import ValidationError from '@/domain/common/errors/validation-error';
-
 import { Category } from './category';
 
 describe('🔖 category - Integration Test', () => {
   describe('create method', () => {
     it('should a invalid category using name property', () => {
-      expect(() => new Category({ name: null })).toThrow(
-        new ValidationError('The name is required'),
-      );
+      expect(() => new Category({ name: null })).containsErrorMessages({
+        name: [
+          'name should not be empty',
+          'name must be a string',
+          'name must be shorter than or equal to 255 characters',
+        ],
+      });
 
-      expect(() => new Category({ name: '' })).toThrow(
-        new ValidationError('The name is required'),
-      );
+      expect(() => new Category({ name: '' })).containsErrorMessages({
+        name: ['name should not be empty'],
+      });
 
-      expect(() => new Category({ name: 5 as any })).toThrow(
-        new ValidationError('The name must be a string'),
-      );
+      expect(() => new Category({ name: 5 as any })).containsErrorMessages({
+        name: [
+          'name must be a string',
+          'name must be shorter than or equal to 255 characters',
+        ],
+      });
     });
 
     it('should a invalid category using description property', () => {
       expect(
         () => new Category({ name: 'name', description: 5 as any }),
-      ).toThrow(new ValidationError('The description must be a string'));
+      ).containsErrorMessages({
+        description: ['description must be a string'],
+      });
     });
 
     it('should a invalid category using isActive property', () => {
@@ -32,7 +39,9 @@ describe('🔖 category - Integration Test', () => {
             description: 'description',
             isActive: '' as any,
           }),
-      ).toThrow(new ValidationError('The isActive must be a boolean'));
+      ).containsErrorMessages({
+        isActive: ['isActive must be a boolean value'],
+      });
     });
   });
 
@@ -43,13 +52,17 @@ describe('🔖 category - Integration Test', () => {
         description: 'description',
       });
 
-      expect(() => category.update(null, null)).toThrow(
-        new ValidationError('The name is required'),
-      );
+      expect(() => category.update(null, null)).containsErrorMessages({
+        name: [
+          'name should not be empty',
+          'name must be a string',
+          'name must be shorter than or equal to 255 characters',
+        ],
+      });
 
-      expect(() => category.update('name', 5 as any)).toThrow(
-        new ValidationError('The description must be a string'),
-      );
+      expect(() => category.update('name', 5 as any)).containsErrorMessages({
+        description: ['description must be a string'],
+      });
     });
   });
 });
