@@ -76,6 +76,7 @@ describe('🔖 In memory Searchable Repository', () => {
       let itemsSorted = await repository['applySort'](items, null, null);
       expect(itemsSorted).toStrictEqual(items);
 
+      repository.sortableFields = ['price'];
       itemsSorted = await repository['applySort'](items, 'price', 'asc');
       expect(itemsSorted).toStrictEqual(items);
     });
