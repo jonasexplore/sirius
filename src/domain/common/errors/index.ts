@@ -4,3 +4,5 @@ export enum CommonErrors {
 }
 
 export { InvalidUuidError } from './invalid-uuid-error';
+export { NotFoundError } from './not-found';
+export { EntityValidationError, ValidationError } from './validation-error';
