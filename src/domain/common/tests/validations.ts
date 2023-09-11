@@ -2,7 +2,7 @@ import { expect } from 'expect';
 
 import { EntityValidationError } from '../errors/validation-error';
 import { FieldsErrors } from '../validators';
-import ClassValidatorFields from '../validators/class-validator-fields';
+import { ClassValidatorFields } from '../validators/class-validator-fields';
 
 type Expected<T = any> =
   | {

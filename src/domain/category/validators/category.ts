@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-import ClassValidatorFields from '@/domain/common/validators/class-validator-fields';
+import { ClassValidatorFields } from '@/domain/common/validators/class-validator-fields';
 
 import { CategoryProps } from '../entities/category';
 

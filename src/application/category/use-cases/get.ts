@@ -1,7 +1,7 @@
 import CategoryRepository from '@/domain/category/repositories/repository';
 import { UseCase } from '@/domain/common/application/use-case';
 
-import { CategoryOutput } from '../dtos/output';
+import { CategoryOutput, CategoryOutputMapper } from '../dtos/output';
 
 export class GetCategoryUseCase implements UseCase<Input, CategoryOutput> {
   constructor(private readonly repository: CategoryRepository.Repository) {}
@@ -9,16 +9,10 @@ export class GetCategoryUseCase implements UseCase<Input, CategoryOutput> {
   async execute({ id }: Input): Promise<CategoryOutput> {
     const entity = await this.repository.findById(id);
 
-    return {
-      id: entity.id,
-      name: entity.name,
-      description: entity.description,
-      isActive: entity.isActive,
-      createdAt: entity.createdAt,
-    };
+    return CategoryOutputMapper.toOutput(entity);
   }
 }
 
-export type Input = {
+type Input = {
   id: string;
 };
